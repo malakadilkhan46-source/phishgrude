@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "PhishGuard",
+  "version": "1.0.0",
+  "description": "Real-time phishing URL detection powered by VirusTotal. Automatically scans the sites you visit and alerts you if they are dangerous.",
+  "permissions": ["storage", "tabs", "notifications", "webNavigation", "alarms"],
+  "host_permissions": ["<all_urls>", "https://www.virustotal.com/*"],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": { "48": "icon.png", "128": "icon.png" },
+    "default_title": "PhishGuard"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": { "48": "icon.png", "128": "icon.png" }
+}
